@@ -105,40 +105,12 @@ public class TelaCadastarTransferencia extends javax.swing.JDialog {
     
     protected void preencheCamposTransferencia(Movimentacao cat) {
         movimentacao = cat;
-//        cbSaiuConta
-//        cbEntrouConta        
-
         txData.setDate(movimentacao.getDataMovi());
         txValorTransferencia.setText(movimentacao.getValorMovi()+"");
         txDescricao.setText(movimentacao.getDescricaoMovi());
      }
 
-   public Movimentacao getMovimentacaoOrigem() {
-    Movimentacao movimentacao = new Movimentacao();
-    movimentacao.setIdContaOrigem(listaConta.get(cbSaiuConta.getSelectedIndex()-1));
-    movimentacao.setIdContaDestino(listaConta.get(cbEntrouConta.getSelectedIndex()-1));
-    movimentacao.setTipoMovi("Transferencia");
-    movimentacao.setIdCategoria(listaCategoria.get(cbCategoria.getSelectedIndex()-1));
-    movimentacao.setValorMovi(Math.abs(Double.parseDouble(txValorTransferencia.getText().replace(",", "."))) * -1); 
-    movimentacao.setDataMovi(txData.getDate());
-    movimentacao.setDescricaoMovi(txDescricao.getText());
-
-    return movimentacao;
-
-}
-   public Movimentacao getMovimentacaoDestino() {
-    Movimentacao movimentacao = new Movimentacao();
-    movimentacao.setIdContaOrigem(listaConta.get(cbSaiuConta.getSelectedIndex()-1));
-    movimentacao.setIdContaDestino(listaConta.get(cbEntrouConta.getSelectedIndex()-1));
-    movimentacao.setTipoMovi("Transferencia");
-    movimentacao.setIdCategoria(listaCategoria.get(cbCategoria.getSelectedIndex()-1));
-    movimentacao.setValorMovi(Double.parseDouble(txValorTransferencia.getText().replace(",", ".")));
-    movimentacao.setDataMovi(txData.getDate());
-    movimentacao.setDescricaoMovi(txDescricao.getText());
-
-    return movimentacao;
-
-}
+   
 
     private boolean verificaCampos() {
     boolean verifica = false;
@@ -380,12 +352,41 @@ public class TelaCadastarTransferencia extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public Movimentacao getMovimentacaoOrigem() {
+    Movimentacao movimentacao = new Movimentacao();
+        movimentacao.setIdContaOrigem(listaConta.get(cbSaiuConta.getSelectedIndex()-1));
+        movimentacao.setIdContaDestino(listaConta.get(cbEntrouConta.getSelectedIndex()-1));
+        movimentacao.setTipoMovi("Transferencia");
+        movimentacao.setIdCategoria(listaCategoria.get(cbCategoria.getSelectedIndex()-1));
+        movimentacao.setValorMovi(Math.abs(Double.parseDouble(txValorTransferencia.getText().replace(",", ".")))); 
+        movimentacao.setDataMovi(txData.getDate());
+        movimentacao.setDescricaoMovi(txDescricao.getText());
+    return movimentacao;
+    
+    }
+   public Movimentacao getMovimentacaoDestino() {
+    Movimentacao movimentacao = new Movimentacao();
+        movimentacao.setIdContaOrigem(listaConta.get(cbEntrouConta.getSelectedIndex()-1));
+        movimentacao.setIdContaDestino(listaConta.get(cbSaiuConta.getSelectedIndex()-1));
+        movimentacao.setTipoMovi("Transferencia");
+        movimentacao.setIdCategoria(listaCategoria.get(cbCategoria.getSelectedIndex()-1));
+        movimentacao.setValorMovi(Double.parseDouble(txValorTransferencia.getText().replace(",", "."))* -1);
+        movimentacao.setDataMovi(txData.getDate());
+        movimentacao.setDescricaoMovi(txDescricao.getText());
+    return movimentacao;
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//     if (!verificaCampos()) {
-//        
-//        } else {
-//            Msg.erro(this, "!");
-//        }
+    if (!verificaCampos()) {
+         
+        new MovimentacaoDao().inserir(getMovimentacaoOrigem());
+        new MovimentacaoDao().inserir(getMovimentacaoDestino());
+
+        Msg.informacao(this, "Salvo com sucesso!");
+            this.dispose();
+        } else {
+            Msg.erro(this, "!");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txValorTransferenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txValorTransferenciaActionPerformed
@@ -428,15 +429,15 @@ public class TelaCadastarTransferencia extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(TelaCadastarTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         
 
-} catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(TelaCadastarTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
 
-} catch (IllegalAccessException ex) {
+
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(TelaCadastarTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
 
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaCadastarTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         

@@ -101,7 +101,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         
         for (Categoria categoria : listaCategorias) {
-            // Verifica se o tipo da categoria é igual a "despesa"
+            // Verifica se o tipo da categoria é igual a "Despesa"
             if ("Despesa".equals(categoria.getTipoLancamento())) {
                 double saldoTotalMovimentacoes = new MovimentacaoDao().getSaldoTotalPorCategoriaEPeriodo(categoria.getIdCategoria(), dataInicialDate, dataFinalDate);
                 double saldoAtualizado = saldoTotalMovimentacoes;
@@ -112,7 +112,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     categoria.getNomeCategoria(),
                     saldoAtualizado
                 });
-            
+            // Senão pupula a categoria do tipo"Receita"
+     
         }else if ("Receita".equals(categoria.getTipoLancamento())) {
                 double saldoTotalMovimentacoes = new MovimentacaoDao().getSaldoTotalPorCategoriaEPeriodo(categoria.getIdCategoria(), dataInicialDate, dataFinalDate);
                 double saldoAtualizado = saldoTotalMovimentacoes;
@@ -131,41 +132,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
 }
 
     protected void atualizaTabelaCartoes() {
-    try {
-        DefaultTableModel model = (DefaultTableModel) txTabelaCartoes.getModel();
-        model.setNumRows(0);
+        try {
+            DefaultTableModel model = (DefaultTableModel) txTabelaCartoes.getModel();
+            model.setNumRows(0);
 
-        listaDeCartoes = new CartaodecreditoDao().getLista("");
-        double saldoCartoes = 0.0;
+            listaDeCartoes = new CartaodecreditoDao().getLista("");
+            double saldoCartoes = 0.0;
 
-        for (Cartaodecredito c : listaDeCartoes) {
-//            double saldoTotalMovimentacoes = new MovimentacaoDao().getSaldoTotalPorConta(c.getIdConta());
-//            double saldoAtualizado = saldoTotalMovimentacoes;
+            for (Cartaodecredito c : listaDeCartoes) {
 
-            // Atualiza o saldo da conta com o saldo das movimentações
-//            c.setSaldoConta(saldoAtualizado);
-
-            model.addRow(new Object[]{
-                c.getNomeCartao(),
-                c.getLimiteCartao(),
-                saldoCartoes
-            });
-
-            // Incrementa o saldo total das contas
-//            saldoTotalContas += saldoAtualizado;
+                model.addRow(new Object[]{
+                    c.getNomeCartao(),
+                    c.getLimiteCartao(),
+                    saldoCartoes
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Msg.erro(this, "Erro ao atualizar a tabela Cartões\nErro:" + e.getMessage());
         }
-
-        // Exibe o saldo total das contas
-//        txSaldoTotal.setText(String.valueOf(saldoTotalContas));
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        Msg.erro(this, "Erro ao atualizar a tabela Cartões\nErro:" + e.getMessage());
     }
-    }
-    
-
-    
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -441,7 +428,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             new String [] {
                 "Nome do cartáo", "Limite", "Saldo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(txTabelaCartoes);
 
         jLabel6.setText("Meus cartóes");
@@ -498,24 +493,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
-                .addGap(72, 72, 72))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(69, 69, 69))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-            new TelaCategoria(this, true).setVisible(true);
-            atualizaTabela();
-            atualizaTabelaPorCategoriaEPeriodo();
+        new TelaCategoria(this, true).setVisible(true);
+        atualizaTabela();
+        atualizaTabelaPorCategoriaEPeriodo();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            new TelaConta(this, true).setVisible(true);
-             atualizaTabela();
-            atualizaTabelaPorCategoriaEPeriodo();
+        new TelaConta(this, true).setVisible(true);
+        atualizaTabela();
+        atualizaTabelaPorCategoriaEPeriodo();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -523,19 +518,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-            TelaCadastarDespesa t = new TelaCadastarDespesa(this, true);
-            t.setDespesa(true); 
-            t.atualizaCombo();
-            t.setVisible(true);
-            atualizaTabela();
-            atualizaTabelaPorCategoriaEPeriodo();        
+        TelaCadastarDespesa t = new TelaCadastarDespesa(this, true);
+        t.setDespesa(true); 
+        t.atualizaCombo();
+        t.setVisible(true);
+        atualizaTabela();
+        atualizaTabelaPorCategoriaEPeriodo();        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            TelaMovimentacao t = new TelaMovimentacao(this, true);
-            t.setVisible(true);
-            atualizaTabela();
-            atualizaTabelaPorCategoriaEPeriodo();            
+        TelaMovimentacao t = new TelaMovimentacao(this, true);
+        t.setVisible(true);
+        atualizaTabela();
+        atualizaTabelaPorCategoriaEPeriodo();            
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

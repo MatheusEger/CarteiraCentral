@@ -334,17 +334,9 @@ public class TelaCadastarReceita extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (!verificaCampos()) {
-//         if (isInserir()) {
-                new MovimentacaoDao().inserir(getMovimentacaoDespesa());
-                Msg.informacao(this, "Salvo com sucesso!");
-//                this.pai.atualizaTabela();
-                this.dispose();
-//         {
-//                new MovimentacaoDao().alterar(getMovimentacaoDespesa());
-//                Msg.informacao(this, "Alterado com sucesso!");
-////                this.pai.atualizaTabela();
-//                this.dispose();
-//            }
+            new MovimentacaoDao().inserir(getMovimentacaoDespesa());
+            Msg.informacao(this, "Salvo com sucesso!");
+            this.dispose();
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -385,15 +377,15 @@ public class TelaCadastarReceita extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(TelaCadastarReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastarReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+        } catch (InstantiationException ex) {
+             java.util.logging.Logger.getLogger(TelaCadastarReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastarReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
 
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (IllegalAccessException ex) {
+             java.util.logging.Logger.getLogger(TelaCadastarReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TelaCadastarReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         

@@ -41,24 +41,13 @@ public class ContaDao {
         em.getTransaction().commit();
     }
     
-    
-
-
-
-
-    
     public void excluir(Conta cat){
         em.getTransaction().begin();
         em.remove(cat);
         em.getTransaction().commit();
     }
     
-//    public void excluir(Conta cat){
-//        em.getTransaction().begin();
-//        em.remove(cat);
-//        em.getTransaction().commit();
-//    }
-    
+
     public List getLista(String cat){
         em.getTransaction().begin();
         Query query = em.createQuery("SELECT e FROM Conta e where e.nomeConta LIKE:likes");
@@ -68,6 +57,4 @@ public class ContaDao {
         return lista;
     }
 
-    
-    
 }
