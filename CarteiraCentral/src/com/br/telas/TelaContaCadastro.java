@@ -8,6 +8,7 @@ package com.br.telas;
 import com.br.dao.ContaDao;
 import com.br.entidades.Conta;
 import com.br.utils.Msg;
+import com.br.telas.TelaCadastarReceita;
 
 /**
  *
@@ -177,9 +178,10 @@ public class TelaContaCadastro extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         if (!vereficaCampos()) {
+    if (!vereficaCampos()) {
         if (isInserir()) {
             double valorInicial = Double.parseDouble(txSaldoCont.getText().replace(",", "."));
+            if(valorInicial<0){
             new ContaDao().inserir(getconta(valorInicial));
             Msg.informacao(this, "Salvo com sucesso!");
             this.pai.atualizaTabela();
@@ -190,6 +192,7 @@ public class TelaContaCadastro extends javax.swing.JDialog {
             this.pai.atualizaTabela();
             this.dispose();
             }
+        }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 

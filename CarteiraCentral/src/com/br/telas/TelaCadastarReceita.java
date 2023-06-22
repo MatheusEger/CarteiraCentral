@@ -93,7 +93,6 @@ public class TelaCadastarReceita extends javax.swing.JDialog {
 
     protected void preencheCampos(Movimentacao cat) {
         movimentacao = cat;
-        
         txData.setDate(movimentacao.getDataMovi());
         txValorDespesa.setText(movimentacao.getValorMovi()+"");
         txDescricao.setText(movimentacao.getDescricaoMovi());

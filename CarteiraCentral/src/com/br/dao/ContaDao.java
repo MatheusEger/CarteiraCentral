@@ -29,10 +29,9 @@ public class ContaDao {
     if (conta.getSaldoConta() == 0) {
         conta.setSaldoConta(valorInicial);
     }
-    
-    em.getTransaction().begin();
-    em.persist(conta);
-    em.getTransaction().commit();
+        em.getTransaction().begin();
+        em.persist(conta);
+        em.getTransaction().commit();
     }
     
     public void alterar(Conta cat){
@@ -43,10 +42,10 @@ public class ContaDao {
     
     public void excluir(Conta cat){
         em.getTransaction().begin();
-        em.remove(cat);
+        Conta contaGerenciada = em.merge(cat);
+        em.remove(contaGerenciada);
         em.getTransaction().commit();
     }
-    
 
     public List getLista(String cat){
         em.getTransaction().begin();
@@ -56,5 +55,6 @@ public class ContaDao {
         em.getTransaction().commit();
         return lista;
     }
+    
 
 }

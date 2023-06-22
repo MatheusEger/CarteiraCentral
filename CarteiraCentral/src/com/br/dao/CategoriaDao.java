@@ -16,6 +16,8 @@ public class CategoriaDao {
     
     private EntityManager em;
     
+    
+   
     public CategoriaDao(){
         em = Singleton.getConection();
     }
@@ -63,50 +65,7 @@ public class CategoriaDao {
             throw e;
         }
              
-        
-        
-
     }
-    
-    public List<Categoria> getListaPorNome(String nome) {
-    try {
-        em.getTransaction().begin();
-        Query query = em.createQuery("SELECT c FROM Categoria c WHERE c.nomeCategoria = :nome");
-        query.setParameter("nome", nome);
-        List<Categoria> lista = query.getResultList();
-        em.getTransaction().commit();
-        return lista;
-    } catch (Exception e) {
-        em.getTransaction().rollback();
-        throw e;
-    }
-}
-
-    public List<Categoria> getListaPorPeriodo(Date dataInicialDate, Date dataFinalDate) {
-    EntityTransaction transaction = em.getTransaction();
-
-    try {
-        if (!transaction.isActive()) {
-            transaction.begin();
-        }
-
-        Query query = em.createQuery("SELECT m.idCategoria FROM Movimentacao m WHERE m.dataMovi BETWEEN :dataInicial AND :dataFinal");
-        query.setParameter("dataInicial", dataInicialDate);
-        query.setParameter("dataFinal", dataFinalDate);
-        List<Categoria> lista = query.getResultList();
-
-        if (transaction.isActive()) {
-            transaction.commit();
-        }
-
-        return lista;
-    } catch (Exception e) {
-        if (transaction.isActive()) {
-            transaction.rollback();
-        }
-        throw e;
-    }
-}
 
     public List<Categoria> getListaPorPeriodoEspecifico(Date dataInicialDate, Date dataFinalDate) {
     EntityTransaction transaction = em.getTransaction();
