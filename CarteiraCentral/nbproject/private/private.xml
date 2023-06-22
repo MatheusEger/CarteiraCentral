@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Projeto/CarteiraCentral/src/com/br/telas/TelaContaCadastro.java</file>
-            <file>file:/C:/Projeto/CarteiraCentral/src/com/br/dao/ContaDao.java</file>
-            <file>file:/C:/Projeto/CarteiraCentral/test/com/br/dao/ContaDaoTest.java</file>
-            <file>file:/C:/Projeto/CarteiraCentral/src/com/br/telas/TelaCategoria.java</file>
-            <file>file:/C:/Projeto/CarteiraCentral/src/com/br/telas/TelaConta.java</file>
-            <file>file:/C:/Projeto/CarteiraCentral/src/com/br/dao/CategoriaDao.java</file>
-            <file>file:/C:/Projeto/CarteiraCentral/src/com/br/entidades/Conta.java</file>
-            <file>file:/C:/Projeto/CarteiraCentral/src/com/br/entidades/Categoria.java</file>
+            <file>file:/C:/Projeto/CarteiraCentral/src/com/br/telas/TelaPrincipal.java</file>
+            <file>file:/C:/Projeto/CarteiraCentral/src/com/br/utils/Utils.java</file>
         </group>
     </open-files>
 </project-private>

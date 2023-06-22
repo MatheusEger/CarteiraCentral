@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Date;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 public class Utils {
     
@@ -18,14 +19,21 @@ public class Utils {
         dialog.setLocationRelativeTo(null);
     }
     
-//    public static String converterDouble(double valor){
-//        return new DecimalFormat("#0.00").format(valor);
-//    }
+    public static String converterDouble(double valor){
+        return new DecimalFormat("#0.00").format(valor);
+    }
     
     public static String converterData(Date data){
         return new SimpleDateFormat("dd/MM/yyyy").format(data);
     }
     
+    public void InserirIcone(JFrame frame){
+        try {
+            frame.setIconImage(Toolkit.getDefaultToolkit().getImage("src/com/br/imagens/carteitacentral.png"));;
+        } catch (Exception e) {
+            Msg.informacao(frame, "Não foi possivel gerar o icone!");
+        }
+    }
     
 }
 

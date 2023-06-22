@@ -37,15 +37,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private List<Categoria> listaCategorias = new ArrayList<>();
     private List<Cartaodecredito> listaDeCartoes = new ArrayList<>();
     
+    
     private double SaldoTotal = 0;
 
     public TelaPrincipal() {
         initComponents();
         TelaMovimentacao t = new TelaMovimentacao(this, true);
-         txSaldoTotal.setText(t.getSaldoTotal()+"");
-         atualizaTabela();
-         atualizaTabelaPorCategoriaEPeriodo();
-         atualizaTabelaCartoes();
+        txSaldoTotal.setText(t.getSaldoTotal()+"");
+        Utils util = new Utils();
+        util.InserirIcone(this);
+        atualizaTabela();
+        atualizaTabelaPorCategoriaEPeriodo();
+        atualizaTabelaCartoes();
+         
     }
     
     protected void atualizaTabela() {
@@ -201,7 +205,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Inicio");
+        jButton1.setText("Visão geral");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
