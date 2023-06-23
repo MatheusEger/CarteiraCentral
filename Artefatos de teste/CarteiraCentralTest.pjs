@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root signature="{24B6FA0B-0143-461A-9758-AEB9E9A9428B}" version="15.0" key="{7E9D7954-D484-49FA-AE24-FADD410707AE}">
+	<children>
+		<child name="CarteiraCentralTest" key="{E3EC5F90-6440-4F68-8BF4-6115EEA2D1E7}" path="..\Users\PC-Eger\Documents\TestComplete 15 Projects\CarteiraCentralTest\CarteiraCentralTest\CarteiraCentralTest.mds" />
+	</children>
+	<testItems key="{D7B2C043-B44C-45F7-BE11-36F49F51D6F2}">
+		<children>
+			<testItem key="{E3EC5F90-6440-4F68-8BF4-6115EEA2D1E7}" enabled="True" timeout="0" stopOnError="True" description="" />
+		</children>
+	</testItems>
+	<variables key="{8C11F102-A2FE-428E-8AEF-E3A0D594F152}" />
+	<analysis key="{EFE7023D-4A68-4397-8C69-D437B119BFD3}" />
+	<scc key="{00000000-0000-0000-0000-000000000000}" name="">
+		<data />
+	</scc>
+</Root>
